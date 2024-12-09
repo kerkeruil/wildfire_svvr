@@ -2,6 +2,25 @@ import vtk
 from vtkmodules.vtkInteractionStyle import vtkInteractorStyleTrackballCamera
 
 
+def render(actors):
+    # Create a renderer, render window, and interactor
+    renderer = vtk.vtkRenderer()
+    render_window = vtk.vtkRenderWindow()
+    render_window.AddRenderer(renderer)
+    render_window_interactor = vtk.vtkRenderWindowInteractor()
+    render_window_interactor.SetRenderWindow(render_window)
+
+    # Add the actor to the renderer
+    for act in actors:
+        renderer.AddActor(act)
+
+    # renderer.AddActor(surface_actor)
+    renderer.SetBackground(0.1, 0.2, 0.4)  # Background color
+
+    # Render and start interaction
+    render_window.Render()
+    render_window_interactor.Start()
+
 def readin_vts(filename):
     data = vtk.vtkXMLStructuredGridReader()
     data.SetFileName(filename)
@@ -34,4 +53,3 @@ class VTK_Renderer():
         self.renderWindow.Render()
         self.renderWindowInteractor.Start()
 
-       

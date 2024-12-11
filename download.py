@@ -6,7 +6,9 @@ import os
 
 file = "output.1000.vts" # Range from 1000 - 76000 with steps of 1000
 output_folder = "data/"
-url = "https://visualisationlab.science.uva.nl/data/SciVisContest/2022/oceans11.lanl.gov/firetec/valley_losAlamos/" + file
+# url = "https://visualisationlab.science.uva.nl/data/SciVisContest/2022/oceans11.lanl.gov/firetec/valley_losAlamos/" + file
+url = "https://visualisationlab.science.uva.nl/data/SciVisContest/2022/oceans11.lanl.gov/firetec/mountain_headcurve320/" + file
+
 os.makedirs(output_folder, exist_ok=True)
 
 dest = Path(output_folder + file)

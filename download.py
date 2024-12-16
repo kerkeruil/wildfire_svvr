@@ -2,16 +2,23 @@ import requests
 from tqdm import tqdm
 from pathlib import Path
 import os
+import argparse
 
+# Set up argument parser
+parser = argparse.ArgumentParser(description="Download a file from a specified URL.")
+parser.add_argument('--id', type=int, required=True, help='The ID of the file to download.')
+parser.add_argument('--output_folder', type=str, default='data/', help='The folder to save the downloaded file.')
 
-file = "output.1000.vts" # Range from 1000 - 76000 with steps of 1000
-output_folder = "data/"
-# url = "https://visualisationlab.science.uva.nl/data/SciVisContest/2022/oceans11.lanl.gov/firetec/valley_losAlamos/" + file
-url = "https://visualisationlab.science.uva.nl/data/SciVisContest/2022/oceans11.lanl.gov/firetec/mountain_headcurve320/" + file
+args = parser.parse_args()
+
+id = args.id
+file = f"output.{id}.vts"
+output_folder = args.output_folder
+url = f"https://visualisationlab.science.uva.nl/data/SciVisContest/2022/oceans11.lanl.gov/firetec/mountain_backcurve40/{file}"
 
 os.makedirs(output_folder, exist_ok=True)
 
-dest = Path(output_folder + file)
+dest = Path(output_folder) / file
 
 try:
     # Send a GET request to get the file size first

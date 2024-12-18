@@ -49,23 +49,10 @@ class renderer:
         # layout/tab size in pixels
         layout1.SetSize(1156, 739)
 
-        # current camera placement for renderView1
-        self.renderView1.CameraPosition = [
-            1644.8866840337323,
-            1790.212856596348,
-            2090.833388367462,
-        ]
-        self.renderView1.CameraFocalPoint = [
-            181.2758156667214,
-            79.14277344119773,
-            306.9464359719487,
-        ]
-        self.renderView1.CameraViewUp = [
-            -0.25623357300275595,
-            -0.5839189046402611,
-            0.7703136172170132,
-        ]
-        self.renderView1.CameraViewAngle = 25.398878827080637
+        # Sideways angle camera placement 
+        self.renderView1.CameraPosition = [1230.4102702553741, 3195.8994642793778, 1215.362951668812]
+        self.renderView1.CameraFocalPoint = [100.99999999999999, -0.9999999999999812, 449.68107392152956]
+        self.renderView1.CameraViewUp = [-0.07399763649576889, -0.20748228371695188, 0.9754360315964541]
         self.renderView1.CameraParallelScale = 899.6336487402332
 
         SaveScreenshot(output_file, GetLayout())

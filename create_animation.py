@@ -12,7 +12,7 @@ import shutil
 
 
 # data_folder = "data/raw/"
-output_folder = "data\\animation\\"
+output_folder = "data\\top_down_frames\\"
 data_folder = "D:\\wildfire_data\\"
 tmp_folder = "data\\tmp\\"
 
@@ -58,17 +58,27 @@ def main():
             print("Skipping:", f)   
             continue
 
-        # Copy file to data/tmp 
-        # This is in fact faster than loading it directly from the external drive by like 10 seconds
-        shutil.copy(data_folder + f, tmp_folder)
         output_file = output_folder + f.split(".")[1] + ".png"
-        renderer_obj.plot(tmp_folder + f, output_file=output_file)
-        os.remove(os.path.join(tmp_folder, f))
+        
+        ## Direct from external drive
+        renderer_obj.plot(data_folder + f, output_file=output_file)
 
-        # Stats TODO: not tested
+        ## Copy file to local drive and then render
+        ## This can be faster than loading it directly from the external drive
+        # shutil.copy(data_folder + f, tmp_folder)
+        # renderer_obj.plot(tmp_folder + f, output_file=output_file)
+        # os.remove(os.path.join(tmp_folder, f))
+
+        # Stats
         frame_count += 1
-        print("Time elapsed:", time.time() - start_time)
-        print("avg time per frame:", round((time.time() - start_time) / frame_count,2), "seconds")
+
+        avg_time = round((time.time() - start_time) / frame_count,1)
+        print("Time elapsed:", round((time.time() - start_time)/60,1), "minutes")
+        print("avg time per frame:", avg_time, "seconds\n")
+
+        # Something is stored somewhere in memory, so we need to reset the renderer object
+        # TODO: Find out what that is 
+
     
     create_animation(png_folder=output_folder, output_file='data\\topdown_view.gif', duration=400)
 

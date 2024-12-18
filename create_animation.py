@@ -48,6 +48,8 @@ def create_animation(png_folder, output_file, duration=200):
         print("No PNG files found in the folder.")
 
 def main():
+    create_animation(png_folder=output_folder, output_file='data\\side_view.gif', duration=10)
+    exit()
     renderer_obj = renderer()
     os.makedirs(tmp_folder, exist_ok=True)
     existing_frames = os.listdir(output_folder)

@@ -12,7 +12,7 @@ import shutil
 
 
 # data_folder = "data/raw/"
-output_folder = "data\\top_down_frames\\"
+output_folder = "data\\side_view_frames\\"
 data_folder = "D:\\wildfire_data\\"
 tmp_folder = "data\\tmp\\"
 
@@ -80,7 +80,7 @@ def main():
         # TODO: Find out what that is 
 
     
-    create_animation(png_folder=output_folder, output_file='data\\topdown_view.gif', duration=400)
+    create_animation(png_folder=output_folder, output_file='data\\side_view.gif', duration=400)
 
 
 

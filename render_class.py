@@ -29,11 +29,16 @@ class renderer:
             self.output60000vts, view=self.renderView1
         )
 
-    def plot(self, filename, output_file):
+    def plot(self, path_to_file, output_file):
+        print("Rendering:", path_to_file)
+
+        
+        output_vts = GetActiveSource()
+        
         ReplaceReaderFileName(
-            self.output60000vts,
+            output_vts,
             [
-                f"C:\\Users\\Gebruiker\\Desktop\\Visualization\\wildfire_svvr\\data\\raw\\{filename}"
+                path_to_file
             ],
             "FileName",
         )

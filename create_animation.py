@@ -70,7 +70,7 @@ def main():
         print("Time elapsed:", time.time() - start_time)
         print("avg time per frame:", round((time.time() - start_time) / frame_count,2), "seconds")
     
-    create_animation(png_folder=output_folder, output_file='output_animation.gif', duration=400)
+    create_animation(png_folder=output_folder, output_file='data\\topdown_view.gif', duration=400)
 
 
 

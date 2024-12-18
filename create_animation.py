@@ -8,17 +8,20 @@ from render_class import renderer
 from PIL import Image
 import os
 import time
+import numpy as np
 import shutil
 
 
 # data_folder = "data/raw/"
-output_folder = "data\\side_view_frames\\"
-data_folder = "D:\\wildfire_data\\"
+side_output_folder = "data\\side_frames\\"
+topdown_output_folder = "data\\topdown_frames\\"
+data_folder = "D:\\wildfire_data\\backcurve_40\\"
 tmp_folder = "data\\tmp\\"
 
 # data_folder = "data\\raw\\"
 
-os.makedirs(output_folder, exist_ok=True)
+os.makedirs(side_output_folder, exist_ok=True)
+os.makedirs(topdown_output_folder, exist_ok=True)
 
 def create_animation(png_folder, output_file, duration=200):
     """
@@ -47,23 +50,37 @@ def create_animation(png_folder, output_file, duration=200):
     else:
         print("No PNG files found in the folder.")
 
+def wind_origin_ranges(start, end, n_frames):
+    ranges = []
+    for b, e in zip(start, end):
+        r = np.linspace(b, e, num=n_frames)
+        ranges.append(r)
+
+    return  np.array(ranges).T
+
 def main():
-    create_animation(png_folder=output_folder, output_file='data\\side_view.gif', duration=10)
-    exit()
     renderer_obj = renderer()
     os.makedirs(tmp_folder, exist_ok=True)
-    existing_frames = os.listdir(output_folder)
+    all_timesteps = os.listdir(data_folder)[:10]
+    existing_frames = os.listdir(side_output_folder)
     start_time = time.time()
     frame_count = 0
-    for f in os.listdir(data_folder):
-        if "vts" not in f or f.split(".")[1] + ".png" in existing_frames:
+    wind_origins_1 = wind_origin_ranges([246, -10, 191], [27, 370, 220], len(all_timesteps))
+    for i, f in enumerate(all_timesteps):
+        print(f)
+        if f.split(".")[1] + ".png" in existing_frames:
             print("Skipping:", f)   
             continue
 
-        output_file = output_folder + f.split(".")[1] + ".png"
+        side_output_file = side_output_folder + f.split(".")[1] + ".png"
+        topdown_output_file = topdown_output_folder + f.split(".")[1] + ".png"
         
         ## Direct from external drive
-        renderer_obj.plot(data_folder + f, output_file=output_file)
+        renderer_obj.plot(data_folder + f, 
+                          side_output_file=side_output_file, 
+                          topdown_output_file=topdown_output_file, 
+                          wind_origin=wind_origins[i]
+                          )
 
         ## Copy file to local drive and then render
         ## This can be faster than loading it directly from the external drive
@@ -80,14 +97,11 @@ def main():
 
         # Something is stored somewhere in memory, so we need to reset the renderer object
         # TODO: Find out what that is 
+        if frame_count > 10:
+            break
 
-    
-    create_animation(png_folder=output_folder, output_file='data\\side_view.gif', duration=400)
-
-
-
-
-
+    shutil.rmtree(tmp_folder)
+    create_animation(png_folder=side_output_folder, output_file='data\\test.gif', duration=10)
 
 
 if __name__ == "__main__":

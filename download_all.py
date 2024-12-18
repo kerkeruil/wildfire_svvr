@@ -9,13 +9,13 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-for i in range(1, 71):
+for i in range(1, 75):
     file = f"output.{i*1000}.vts"
 
     # output_folder = "data/raw/"
-    output_folder = "D:\\wildfire_data"
+    output_folder = "D:\\wildfire_data\\backcurve_320"
 
-    url = f"https://visualisationlab.science.uva.nl/data/SciVisContest/2022/oceans11.lanl.gov/firetec/mountain_backcurve40/{file}"
+    url = f"https://visualisationlab.science.uva.nl/data/SciVisContest/2022/oceans11.lanl.gov/firetec/mountain_backcurve320/{file}"
 
     os.makedirs(output_folder, exist_ok=True)
 

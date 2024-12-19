@@ -11,15 +11,16 @@ import time
 import numpy as np
 import shutil
 
+backcurve = 40
 
 # data_folder = "data/raw/"
-side_output_folder = "data\\side_frames_320\\"
-topdown_output_folder = "data\\topdown_frames_320\\"
-data_folder = "D:\\wildfire_data\\backcurve_320\\"
+side_output_folder = f"data\\side_frames_{backcurve}\\"
+topdown_output_folder = f"data\\topdown_frames_{backcurve}\\"
+data_folder = f"D:\\wildfire_data\\backcurve_{backcurve}\\"
 tmp_folder = "data\\tmp\\"
 
-side_gif_ouput_name ="data\\gifs\\sideview_320_final.gif"
-topdown_gif_ouput_name ="data\\gifs\\topdown_320_final.gif"
+side_gif_ouput_name = f"data\\gifs\\sideview_{backcurve}_final.gif"
+topdown_gif_ouput_name = f"data\\gifs\\topdown_{backcurve}_final.gif"
 
 # data_folder = "data\\raw\\"
 
@@ -127,7 +128,7 @@ def main():
         )
 
         ## Copy file to local drive and then render
-        ## This can be faster than loading it directly from the external drive
+        ## This can be faster than loading it from the external drive
         # shutil.copy(data_folder + f, tmp_folder)
         # renderer_obj.plot(tmp_folder + f, output_file=output_file)
         # os.remove(os.path.join(tmp_folder, f))

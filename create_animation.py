@@ -13,10 +13,13 @@ import shutil
 
 
 # data_folder = "data/raw/"
-side_output_folder = "data\\side_frames\\"
-topdown_output_folder = "data\\topdown_frames\\"
-data_folder = "D:\\wildfire_data\\backcurve_40\\"
+side_output_folder = "data\\side_frames_320\\"
+topdown_output_folder = "data\\topdown_frames_320\\"
+data_folder = "D:\\wildfire_data\\backcurve_320\\"
 tmp_folder = "data\\tmp\\"
+
+side_gif_ouput_name ="data\\gifs\\sideview_320_final.gif"
+topdown_gif_ouput_name ="data\\gifs\\topdown_320_final.gif"
 
 # data_folder = "data\\raw\\"
 
@@ -72,6 +75,8 @@ def wind_origin_ranges(start, end, n_frames):
 def main():
     os.makedirs(tmp_folder, exist_ok=True)
     all_timesteps = os.listdir(data_folder)
+    sorted_timesteps = sorted(all_timesteps, key=lambda x: int(x.split(".")[1]))
+
     existing_frames = os.listdir(side_output_folder)
     start_time = time.time()
     frame_count = 0
@@ -102,7 +107,7 @@ def main():
     # Render each frame
     renderer_obj = renderer()
 
-    for i, f in enumerate(all_timesteps):
+    for i, f in enumerate(sorted_timesteps):
         if f.split(".")[1] + ".png" in existing_frames:
             print("Skipping:", f)
             continue
@@ -139,14 +144,14 @@ def main():
 
     shutil.rmtree(tmp_folder)
     create_animation(
-        png_folder=topdown_output_folder,
-        output_file="data\\gifs\\sideview_final.gif",
+        png_folder=side_output_folder,
+        output_file=side_gif_ouput_name,
         duration=150,
     )
 
     create_animation(
         png_folder=topdown_output_folder,
-        output_file="data\\gifs\\topdown_final.gif",
+        output_file=topdown_gif_ouput_name,
         duration=150,
     )
 

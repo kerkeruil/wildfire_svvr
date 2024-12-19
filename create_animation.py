@@ -138,11 +138,16 @@ def main():
         # TODO: Find out what that is
 
     shutil.rmtree(tmp_folder)
-    # create_animation(png_folder=side_output_folder, output_file='data\\test.gif', duration=10)
+    create_animation(
+        png_folder=topdown_output_folder,
+        output_file="data\\gifs\\sideview_final.gif",
+        duration=150,
+    )
+
     create_animation(
         png_folder=topdown_output_folder,
         output_file="data\\gifs\\topdown_final.gif",
-        duration=10,
+        duration=150,
     )
 
 

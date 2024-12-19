@@ -68,7 +68,7 @@ class renderer:
         self.renderView1.CameraViewUp = [-0.07399763649576889, -0.20748228371695188, 0.9754360315964541]
         self.renderView1.CameraParallelScale = 899.6336487402332
 
-        # SaveScreenshot(side_output_file)
+        SaveScreenshot(side_output_file)
 
         # Top-down view
         self.renderView1.CameraPosition = [78.53204961242727, 29.374903765884817, 3925.393236573283]

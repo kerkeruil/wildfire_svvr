@@ -59,7 +59,7 @@ def create_animation(png_folder, output_file, duration=200):
             duration=duration,
             loop=0,
         )
-        print(f"Animation saved as {output_file}")
+        print(f"Animation saved at {output_file}")
     else:
         print("No PNG files found in the folder.")
 

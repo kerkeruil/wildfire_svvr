@@ -1,7 +1,7 @@
 # Wildfire SVVR
 
 ## Overview
-Wildfire SVVR is a visualization tool designed to simulate and visualize the spread of wildfires using various algorithms and data sources. This tool aims to help researchers and emergency responders understand and predict wildfire behavior.
+Wildfire SVVR is a visualization tool designed to simulate and visualize the spread of wildfires using various algorithms and data sources. This tool aims to help researchers understand and predict wildfire behavior.
 
 ## Usage
 To start the simulation, run the following command:

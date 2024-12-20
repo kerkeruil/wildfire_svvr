@@ -6,3 +6,8 @@ data/*
 
 !data/gifs
 !data/states
+!data/report_visualizations
+!data/side_frames_40
+!data/side_frames_320
+!data/topdown_frames_40
+!data/topdown_frames_320
